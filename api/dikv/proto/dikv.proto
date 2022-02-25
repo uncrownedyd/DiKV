@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option go_package = "github.com/DiKV/api/dikv/proto";
+option java_multiple_files = true;
+option java_package = "github.DiKV.api.dikv";
+option java_outer_classname = "DiKVProto";
+
+package dikv;
+
+// The DiKV service definition.
+service DiKV {
+  // Put a kv pair
+  rpc Put (PutRequest) returns (PutReply) {}
+  // Get a value by key
+  rpc Get (GetRequest) returns (GetReply) {}
+}
+
+// The request message for key-value PUT
+message PutRequest {
+  string key = 1;
+  string value = 2;
+}
+
+// The response message for PUT
+message PutReply {
+  int32 code = 1;
+  string message = 2;
+}
+
+// The request message for value GET
+message GetRequest {
+  string key = 1;
+}
+
+// The response message for GET
+message GetReply {
+  message Date {
+    string value = 1;
+  }
+  int32 code = 1;
+  string message = 2;
+  Date date = 3;
+}
